@@ -1,0 +1,17 @@
+﻿@model List<Assignment02.Models.User>
+
+<table class="table-bordered">
+    <thead class="d-xl-table-row">
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+    </th>
+    @foreach (var user in Model)
+    {
+        <tr class="d-lg-table-row">
+            <td>@user.Id</td>
+            <td>@user.Name</td>
+            <td>@user.Email</td>
+        </tr>
+    }
+</table>

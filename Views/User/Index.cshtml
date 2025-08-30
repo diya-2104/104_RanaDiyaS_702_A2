@@ -1,0 +1,32 @@
+﻿@model List<Assignment02.Models.User>
+
+@{
+    ViewBag.Title = "User Form";
+}
+
+<h2>Add User</h2>
+
+@using (Html.BeginForm("AddUser", "User", FormMethod.Post, new { id = "userForm" }))
+{
+    <input type="text" name="Name" placeholder="Name" required />
+    <input type="email" name="Email" placeholder="Email" required />
+    <input type="submit" value="Add" />
+}
+
+<div id="userList">
+    @Html.Partial("_UserList", Model)
+</div>
+
+@section scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $("#userForm").submit(function (e) {
+            e.preventDefault();
+            $.post("/User/AddUser", $(this).serialize(), function (data) {
+                $("#userList").html(data);
+                $("#userForm")[0].reset();
+            });
+        });
+    </script>
+}
+
